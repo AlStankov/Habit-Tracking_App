@@ -7,7 +7,6 @@ import os
 
 
 def interface():
-    os.remove('main.db')
     db = get_db('main.db')
 
     '''the whole menu is inserted in a while-loop. Thus, whatever the user decides to do, they will be returned to the
