@@ -1,17 +1,13 @@
 from tracker import Habit
 from database import (get_db, habit_create, habit_insert, return_data_for_habit, return_all_data,
-                      return_given_periodicity, select_all, select_from_habit_definition)
+                      return_given_periodicity)
 import os
 
 
 class TestHabit:
 
     def setup_method(self):
-        try:
-            os.remove("test_1.db")
-            print("Database removed")
-        except Exception as e:
-            print(f"Error removing database file: {e}")
+        
         self.test_db = get_db(db_name="test_1.db")
 
         habit_create("Teeth", "Brush your teeth every day", "every day", self.test_db)
@@ -95,20 +91,7 @@ class TestHabit:
         habit.streak_reset()
         habit.checkoff(db=self.test_db)
 
-    def test_select(self):
-
-        query = select_all(self.test_db)
-        print(query)
-        if not query:
-            print('empty')
-
     def teardown_method(self):
-
-        query1 = select_all(self.test_db)
-        print(query1)
-
-        query2 = select_from_habit_definition(self.test_db)
-        print(query2)
 
         try:
             self.test_db.close()
