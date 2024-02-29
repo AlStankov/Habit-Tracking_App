@@ -131,24 +131,3 @@ def are_weeks_consecutive(today, db):
     13 days (f.ex. Monday and then Sunday in the next week '''
 
     return 1 <= (today - most_recent_checkoff_datetime.date()).days <= 13
-
-
-def select_all(db):
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM habit_follow")
-    result = cursor.fetchall()
-    return result
-
-
-def select_from_habit_definition(db):
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM habit_definition")
-    result = cursor.fetchall()
-    return result
-
-
-def clear(db):
-    cursor = db.cursor()
-    cursor.execute("DELETE FROM habit_follow WHERE name = 'Gym'")
-    db.commit()
-
