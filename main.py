@@ -6,8 +6,6 @@ from datetime import date
 import os
 
 
-#habit_instance = None
-
 def interface():
     os.remove('main.db')
     db = get_db('main.db')
@@ -79,8 +77,7 @@ def interface():
             if not is_name_in_database(name, db):
                 print("Sorry, the name you inserted does not exist on the database!")
 
-            # the variable habit_instance is artificially created so that we are able to check
-            # the periodicity in line 78
+            # the variable habit_instance is artificially created 
             habit_instance = Habit(name, "description", "periodicity")
             # in the following, it is assumed that the user can not check-off a habit for any other day, except the
             # current day
